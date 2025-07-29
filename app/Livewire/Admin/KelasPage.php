@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Kelas;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 use Livewire\Component;
 
 class KelasPage extends Component
@@ -31,7 +32,9 @@ class KelasPage extends Component
         ]);
 
         $this->resetForm();
-        session()->flash('message', 'Kelas berhasil ditambahkan!');
+        LivewireAlert::title('Kelas berhasil ditambahkan!')
+            ->success()
+            ->show();
     }
 
     public function edit($id)
@@ -52,13 +55,17 @@ class KelasPage extends Component
         ]);
 
         $this->resetForm();
-        session()->flash('message', 'Kelas berhasil diperbarui!');
+        LivewireAlert::title('Kelas berhasil diperbarui!')
+            ->success()
+            ->show();
     }
 
     public function delete($id)
     {
         Kelas::findOrFail($id)->delete();
-        session()->flash('message', 'Kelas berhasil dihapus!');
+        LivewireAlert::title('Kelas berhasil dihapus!')
+            ->success()
+            ->show();
     }
 
     public function cancelEdit()

@@ -36,7 +36,7 @@
 						<div class="card">
 								<div class="card-body">
 										<!-- Data Table -->
-										<table class="table-striped table">
+										<table id="kelasTable" class="table-striped table">
 												<thead>
 														<tr>
 																<th>No</th>
@@ -54,7 +54,8 @@
 																		<td>
 																				<button wire:click="edit({{ $item->id }})" class="btn btn-sm btn-warning">Edit</button>
 																				<button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-danger"
-																						onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+																						onclick="return confirm('Yakin ingin menghapus?')"
+																						{{ $item->siswas()->count() == 0 ? '' : 'disabled' }}>Hapus</button>
 																		</td>
 																</tr>
 														@empty
@@ -72,5 +73,22 @@
 
 @push('js')
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+		<script>
+				$(document).ready(function() {
+						$('#kelasTable').DataTable({
+								"language": {
+										"url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
+								},
+								"pageLength": 10,
+								"order": [
+										[1, "asc"]
+								]
+						});
+				});
+		</script>
 @endpush

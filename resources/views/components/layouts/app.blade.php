@@ -52,21 +52,23 @@
 								<div class="sb-sidenav-menu">
 										<div class="nav">
 												<div class="sb-sidenav-menu-heading">Core</div>
-												<a class="nav-link" href="index.html">
+												<a class="nav-link" href="{{ route('admin.dashboard') }}">
 														<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 														Dashboard
 												</a>
 												<div class="sb-sidenav-menu-heading">Master</div>
-												<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMaster"
-														aria-expanded="false" aria-controls="collapseMaster">
+												<a class="nav-link {{ Route::is('admin.kelas') ? '' : 'collapse' }} collapse" href="#"
+														data-bs-toggle="collapse" data-bs-target="#collapseMaster" aria-expanded="false"
+														aria-controls="collapseMaster">
 														<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
 														Master Data
 														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 												</a>
-												<div class="collapse" id="collapseMaster" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+												<div class="{{ Route::is('admin.kelas') ? 'show' : '' }} collapse" id="collapseMaster"
+														aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 														<nav class="sb-sidenav-menu-nested nav">
-																<a class="nav-link" href="#">Data Kelas</a>
-																<a class="nav-link" href="#">Data Siswa</a>
+																<a class="nav-link" href="{{ route('admin.kelas') }}">Data Kelas</a>
+																<a class="nav-link" href="{{ route('admin.siswa') }}">Data Siswa</a>
 																<a class="nav-link" href="#">Data Guru</a>
 																<a class="nav-link" href="#">Data Jenjang</a>
 														</nav>
@@ -168,6 +170,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 				crossorigin="anonymous"></script>
 		<script src="{{ asset('sb') }}/js/datatables-simple-demo.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 		@stack('js')
 </body>
