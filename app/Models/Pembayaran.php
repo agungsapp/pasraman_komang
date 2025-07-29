@@ -9,6 +9,7 @@ class Pembayaran extends Model
     protected $fillable = [
         'siswa_id',
         'tahun',
+        'status'
     ];
 
     public function details()

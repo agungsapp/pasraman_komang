@@ -50,4 +50,9 @@ class Siswa extends Authenticatable
     {
         return $this->hasMany(Nilai::class, 'siswa_id', 'id');
     }
+
+    public function pembayarans()
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
 }

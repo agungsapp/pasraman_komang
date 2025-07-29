@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswas');
-            $table->string('tahun', 6);
+            $table->string('tahun', 9);
+            $table->enum('status', ['tagihan', 'lunas'])->default('tagihan');
             $table->timestamps();
         });
     }
