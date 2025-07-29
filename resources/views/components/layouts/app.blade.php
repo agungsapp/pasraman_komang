@@ -13,6 +13,7 @@
 		<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
 		@stack('css')
+		@livewireStyles
 </head>
 
 <body class="sb-nav-fixed">
@@ -222,7 +223,7 @@
 		<script src="{{ asset('sb') }}/js/datatables-simple-demo.js"></script>
 
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+		@livewireScripts
 		@stack('js')
 </body>
 

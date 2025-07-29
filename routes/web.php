@@ -2,6 +2,7 @@
 
 use App\Livewire\Admin\DashboardPage;
 use App\Livewire\Admin\GuruPage;
+use App\Livewire\Admin\GuruPelajaranPage;
 use App\Livewire\Admin\KelasPage;
 use App\Livewire\Admin\KomponenBiayaPage;
 use App\Livewire\Admin\PembayaranPage;
@@ -20,4 +21,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('guru', GuruPage::class)->name('guru');
     Route::get('komponen', KomponenBiayaPage::class)->name('komponen');
     Route::get('pembayaran', PembayaranPage::class)->name('pembayaran');
+    Route::get('guru-pelajaran', GuruPelajaranPage::class)->name('guru-pelajaran');
 });

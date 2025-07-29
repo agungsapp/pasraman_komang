@@ -9,10 +9,11 @@ use App\Models\BiayaPendidikan;
 use App\Trait\LivewireAlertTrait;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PembayaranPage extends Component
 {
-    use LivewireAlertTrait;
+    use LivewireAlertTrait, WithPagination;
 
     public $siswa_id = '';
     public $tahun = '';
@@ -21,6 +22,8 @@ class PembayaranPage extends Component
     public $editMode = false;
     public $pembayaranId = null;
     public $jenjang_id = '';
+    public $modalDetails = null;
+    public $statusFilter = 'all';
 
     protected function rules()
     {
@@ -67,10 +70,14 @@ class PembayaranPage extends Component
             ? BiayaPendidikan::where('jenjang_id', $this->jenjang_id)->with('komponenBiaya')->get()
             : collect([]);
 
-        // dd($siswas);
+        $query = Pembayaran::with(['siswa', 'details.biayaPendidikan.komponenBiaya']);
+        if ($this->statusFilter !== 'all') {
+            $query->where('status', $this->statusFilter);
+        }
+        $pembayarans = $query->orderBy('id', 'desc')->paginate(10);
 
         return view('livewire.admin.pembayaran-page', [
-            'pembayarans' => Pembayaran::with(['siswa', 'details.biayaPendidikan.komponenBiaya'])->get(),
+            'pembayarans' => $pembayarans,
             'siswas' => $siswas,
             'biayaPendidikans' => $biayaPendidikans,
             'totalJumlah' => array_sum(array_column(
@@ -78,6 +85,12 @@ class PembayaranPage extends Component
                 'jumlah'
             )),
         ]);
+    }
+
+    public function setStatusFilter($filter)
+    {
+        $this->statusFilter = $filter;
+        $this->resetPage(); // Reset pagination to page 1
     }
 
     public function updatedSiswaId($value)
@@ -172,6 +185,13 @@ class PembayaranPage extends Component
         $this->resetForm();
     }
 
+    public function detail($id)
+    {
+        $this->pembayaranId = $id;
+        $this->modalDetails = Pembayaran::with(['details.biayaPendidikan.komponenBiaya', 'siswa'])->findOrFail($id);
+        $this->dispatch('open-modal', id: 'modalDetail');
+    }
+
     private function resetForm()
     {
         $this->siswa_id = '';
@@ -181,7 +201,9 @@ class PembayaranPage extends Component
         $this->resetDetails();
         $this->editMode = false;
         $this->pembayaranId = null;
+        $this->modalDetails = null;
         $this->resetErrorBag();
+        $this->dispatch('close-modal', id: 'modalDetail');
     }
 
     private function resetDetails()
@@ -198,9 +220,4 @@ class PembayaranPage extends Component
             }
         }
     }
-
-    //     public function detail($id){
-    // $this->pembayaranId = $id;
-    // $pembayaranDetail = PembayaranDetail
-    //     }
 }
