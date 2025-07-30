@@ -16,6 +16,7 @@ use App\Livewire\Admin\SiswaPage;
 use App\Livewire\Siswa\HomePage;
 use App\Livewire\Siswa\LoginPage;
 use App\Livewire\Siswa\RegisterPage;
+use App\Livewire\Siswa\SiswaPembayaranPage;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,7 @@ Route::get('login', LoginPage::class)->name('login');
 Route::post('logout', [SiswaAuthController::class, 'logout'])->name('logout');
 Route::get('register', RegisterPage::class)->name('register');
 Route::get('home', HomePage::class)->name('home');
+Route::get('pembayaran', SiswaPembayaranPage::class)->name('pembayaran');
 
 
 Route::prefix('admin')->name('admin.')->group(function () {

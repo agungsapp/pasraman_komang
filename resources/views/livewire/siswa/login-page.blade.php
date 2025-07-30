@@ -3,7 +3,7 @@
 				<div class="row">
 						<div class="contact-content col-6 mx-auto">
 								<div class="contact-form-container" data-aos="fade-up" data-aos-delay="400">
-										<h3>Login {{ Auth::guard('siswa')->check() ? 'yes' : 'no' }} </h3>
+										<h3>Login </h3>
 										<p>Silahkan login untuk dapat mengakses data pembayaran dan nilai</p>
 
 										<form wire:submit.prevent="login" class="php-email-form">

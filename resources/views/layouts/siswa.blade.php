@@ -69,7 +69,7 @@
 										<li><a href="#pengajar">Pengajar</a></li>
 
 										@if (Auth::guard('siswa')->check())
-												<li><a href="#">Pembayaran</a></li>
+												<li><a href="{{ route('pembayaran') }}">Pembayaran</a></li>
 												<li><a href="#">Nilai</a></li>
 										@endif
 

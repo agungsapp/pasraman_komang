@@ -27,19 +27,21 @@ class LoginPage extends Component
         // dd($this->email, $this->password);
         $this->validate();
         // dd(" validasi lolos");
+        // handle error validasi
 
         if (Auth::guard('siswa')->attempt(['email' => $this->email, 'password' => $this->password])) {
 
             // dd("lolos nih");
 
             $this->alertSuccess("Login berhasil");
-            return redirect()->intended('/home'); // Ganti dengan route tujuan setelah login
+            return redirect()->intended('/home');
         }
 
         // dd("ga lolos..");
         // session()->flash('error', 'Email atau password salah.');
 
         $this->alertError("error", 'Email atau password salah.');
+        // return redirect()->to(route('login'));
     }
 
     public function render()
