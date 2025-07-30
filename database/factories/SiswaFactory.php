@@ -25,7 +25,7 @@ class SiswaFactory extends Factory
             'no_orang_tua'   => $this->faker->phoneNumber(),
             'alamat'         => $this->faker->address(),
             'tanggal_lahir'  => $this->faker->date(),
-            'password'       => Hash::make('siswa'), // password disamakan
+            'password'       => Hash::make('siswa123'), // password disamakan
             'is_active'      => true,
         ];
     }

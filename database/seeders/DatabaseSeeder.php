@@ -37,6 +37,19 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->call(KelasSeeder::class);
+
+        Siswa::create([
+            'jenjang_id'     => 1,
+            'kelas_id' => 1,
+            'nama'           => 'agung saputra',
+            'email'            => 'agung.dni19@gmail.com',
+            'no_orang_tua'   => '085855558888',
+            'alamat'         => 'Jl. pramuka bedera',
+            'tanggal_lahir'  => '11/08/2010',
+            'password'       => Hash::make('siswa123'),
+            'is_active'      => true,
+        ]);
+
         Siswa::factory()->count(50)->create();
         Pelajaran::factory()->count(10)->create();
         $this->call(KomponenBiayaSeeder::class);

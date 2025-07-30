@@ -1,7 +1,7 @@
 <main class="main">
 
 		<!-- Hero Section -->
-		@livewire('home-page.hero-section')
+		@livewire('siswa.home-page.hero-section')
 
 		<!-- /Hero Section -->
 
@@ -138,7 +138,7 @@
 
 
 		<!-- Testimonials Section -->
-		@livewire('home-page.testimoni-section')
+		@livewire('siswa.home-page.testimoni-section')
 		<!-- /Testimonials Section -->
 
 		<!-- Stats Section -->
@@ -297,11 +297,11 @@
 		</section><!-- /Stats Section -->
 
 		<!-- Recent News Section -->
-		@livewire('home-page.news-section')
+		@livewire('siswa.home-page.news-section')
 		<!-- /Recent News Section -->
 
 		<!-- Events Section -->
-		@livewire('home-page.event-section')
+		@livewire('siswa.home-page.event-section')
 		<!-- /Events Section -->
 
 </main>

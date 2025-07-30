@@ -5,8 +5,10 @@ namespace App\Livewire\Siswa;
 use App\Models\Jenjang;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+#[Layout('layouts.siswa')]
 class RegisterPage extends Component
 {
 
@@ -59,6 +61,6 @@ class RegisterPage extends Component
 
     public function render()
     {
-        return view('livewire.register-page');
+        return view('livewire.siswa.register-page');
     }
 }
