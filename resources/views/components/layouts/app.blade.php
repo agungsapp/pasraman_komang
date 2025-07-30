@@ -68,13 +68,13 @@
 												<div class="sb-sidenav-menu-heading">Master</div>
 												@php
 														$masterMenu = [
+														    ['route' => 'admin.pelajaran', 'label' => 'Data Pelajaran'],
 														    ['route' => 'admin.kelas', 'label' => 'Data Kelas'],
 														    ['route' => 'admin.siswa', 'label' => 'Data Siswa'],
 														    ['route' => 'admin.guru', 'label' => 'Data Guru'],
-														    // Tambah menu lain di sini jika perlu
 														];
 
-														// Cek jika salah satu route di menu ini aktif
+														// Cek jika salah satu route di menu Master aktif
 														$isMasterActive = collect($masterMenu)->pluck('route')->contains(fn($route) => Route::is($route));
 												@endphp
 
@@ -102,24 +102,24 @@
 												@php
 														$pembayaranMenu = [
 														    ['route' => 'admin.komponen', 'label' => 'Komponen Biaya'],
+														    ['route' => 'admin.biaya-pendidikan', 'label' => 'Biaya Pendidikan'],
 														    ['route' => 'admin.pembayaran', 'label' => 'Pembayaran'],
-														    // Tambah menu lain di sini jika perlu
 														];
 
-														// Cek jika salah satu route di menu ini aktif
+														// Cek jika salah satu route di menu Pembayaran aktif
 														$isPembayaranActive = collect($pembayaranMenu)->pluck('route')->contains(fn($route) => Route::is($route));
 												@endphp
 
 												<a class="nav-link {{ $isPembayaranActive ? '' : 'collapsed' }}" href="#" data-bs-toggle="collapse"
-														data-bs-target="#collapseMaster" aria-expanded="{{ $isPembayaranActive ? 'true' : 'false' }}"
-														aria-controls="collapseMaster">
+														data-bs-target="#collapsePembayaran" aria-expanded="{{ $isPembayaranActive ? 'true' : 'false' }}"
+														aria-controls="collapsePembayaran">
 														<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
 														Pembayaran
 														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 												</a>
 
-												<div class="{{ $isPembayaranActive ? 'show' : '' }} collapse" id="collapseMaster"
-														aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+												<div class="{{ $isPembayaranActive ? 'show' : '' }} collapse" id="collapsePembayaran"
+														aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 														<nav class="sb-sidenav-menu-nested nav">
 																@foreach ($pembayaranMenu as $menu)
 																		<a class="nav-link {{ Route::is($menu['route']) ? 'active' : '' }}"
@@ -130,9 +130,36 @@
 														</nav>
 												</div>
 
+												<div class="sb-sidenav-menu-heading">Manajemen Kelas & Siswa</div>
+												@php
+														$kelasSiswaMenu = [
+														    ['route' => 'admin.guru-pelajaran', 'label' => 'Guru Pelajaran'],
+														    ['route' => 'admin.pelajaran-siswa', 'label' => 'Pelajaran Siswa'], // Diperbaiki dari 'komponen' ke 'guru-pelajaran'
+														];
 
+														// Cek jika salah satu route di menu Kelas & Siswa aktif
+														$isKelasSiswaActive = collect($kelasSiswaMenu)->pluck('route')->contains(fn($route) => Route::is($route));
+												@endphp
 
+												<a class="nav-link {{ $isKelasSiswaActive ? '' : 'collapsed' }}" href="#"
+														data-bs-toggle="collapse" data-bs-target="#collapseKelasSiswa"
+														aria-expanded="{{ $isKelasSiswaActive ? 'true' : 'false' }}" aria-controls="collapseKelasSiswa">
+														<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+														Kelas & Siswa
+														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+												</a>
 
+												<div class="{{ $isKelasSiswaActive ? 'show' : '' }} collapse" id="collapseKelasSiswa"
+														aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+														<nav class="sb-sidenav-menu-nested nav">
+																@foreach ($kelasSiswaMenu as $menu)
+																		<a class="nav-link {{ Route::is($menu['route']) ? 'active' : '' }}"
+																				href="{{ route($menu['route']) }}">
+																				{{ $menu['label'] }}
+																		</a>
+																@endforeach
+														</nav>
+												</div>
 
 												<div class="sb-sidenav-menu-heading">Interface</div>
 												<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
@@ -141,7 +168,7 @@
 														Layouts
 														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 												</a>
-												<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+												<div class="collapse" id="collapseLayouts" aria-labelledby="headingFour"
 														data-bs-parent="#sidenavAccordion">
 														<nav class="sb-sidenav-menu-nested nav">
 																<a class="nav-link" href="layout-static.html">Static Navigation</a>
@@ -154,7 +181,7 @@
 														Pages
 														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 												</a>
-												<div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+												<div class="collapse" id="collapsePages" aria-labelledby="headingFive"
 														data-bs-parent="#sidenavAccordion">
 														<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 																<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -162,7 +189,7 @@
 																		Authentication
 																		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 																</a>
-																<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+																<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingSix"
 																		data-bs-parent="#sidenavAccordionPages">
 																		<nav class="sb-sidenav-menu-nested nav">
 																				<a class="nav-link" href="login.html">Login</a>
@@ -175,7 +202,7 @@
 																		Error
 																		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 																</a>
-																<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+																<div class="collapse" id="pagesCollapseError" aria-labelledby="headingSeven"
 																		data-bs-parent="#sidenavAccordionPages">
 																		<nav class="sb-sidenav-menu-nested nav">
 																				<a class="nav-link" href="401.html">401 Page</a>
