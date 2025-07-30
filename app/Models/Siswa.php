@@ -17,10 +17,13 @@ class Siswa extends Authenticatable
         'jenjang_id',
         'kelas_id',
         'nama',
+        'nisn', // tambahan baru
         'email',
         'no_orang_tua',
+        'nama_orang_tua', // tambahan baru
         'alamat',
         'tanggal_lahir',
+        'tempat_lahir', // tambahan baru
         'password',
         'is_active',
     ];

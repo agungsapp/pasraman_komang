@@ -44,8 +44,10 @@ class DatabaseSeeder extends Seeder
             'nama'           => 'agung saputra',
             'email'            => 'agung.dni19@gmail.com',
             'no_orang_tua'   => '085855558888',
+            'nama_orang_tua' => 'ya ada namanya',
             'alamat'         => 'Jl. pramuka bedera',
             'tanggal_lahir'  => '11/08/2010',
+            'tempat_lahir'  => 'tanjung harapan',
             'password'       => Hash::make('siswa123'),
             'is_active'      => true,
         ]);

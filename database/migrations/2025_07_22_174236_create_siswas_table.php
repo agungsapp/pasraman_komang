@@ -16,10 +16,13 @@ return new class extends Migration
             $table->foreignId('jenjang_id')->constrained('jenjangs');
             $table->foreignId('kelas_id')->nullable()->constrained('kelas');
             $table->string('nama');
+            $table->string('nisn')->nullable();
             $table->string('email');
             $table->string('no_orang_tua');
+            $table->string('nama_orang_tua');
             $table->text('alamat');
             $table->date('tanggal_lahir');
+            $table->string('tempat_lahir');
             $table->string('password');
             $table->boolean('is_active')->default(true);
             $table->string('remember_token', 100)->nullable();
