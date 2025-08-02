@@ -134,6 +134,7 @@
 														$kelasSiswaMenu = [
 														    ['route' => 'admin.guru-pelajaran', 'label' => 'Guru Pelajaran'],
 														    ['route' => 'admin.pelajaran-siswa', 'label' => 'Pelajaran Siswa'],
+														    ['route' => 'admin.nilai', 'label' => 'Manejemen Nilai'],
 														    ['route' => 'admin.jadwal', 'label' => 'Manejemen Jadwal'],
 														];
 

@@ -1,8 +1,46 @@
 <div class="container mt-4">
-		<h1 class="mb-4 text-center" data-aos="fade-up" data-aos-delay="100">Manajemen Nilai</h1>
+		<h1 class="mb-4 text-center">Manajemen Nilai</h1>
+
+		<!-- Form Import -->
+		<div class="card mb-4">
+				<div class="card-header">
+						<h5>Import Nilai dari Excel</h5>
+				</div>
+				<div class="card-body">
+						<form wire:submit.prevent="import">
+								<div class="row">
+										<div class="col-md-6 mb-3">
+												<label for="file" class="form-label">Pilih File Excel</label>
+												<input type="file" wire:model="file" class="form-control" id="file" accept=".xlsx,.xls">
+												@error('file')
+														<span class="text-danger">{{ $message }}</span>
+												@enderror
+										</div>
+										<div class="col-md-6 d-flex align-items-end mb-3">
+												<a href="{{ asset('templates/nilai-template.xlsx') }}" class="btn btn-info btn-sm">Unduh Template Excel</a>
+										</div>
+								</div>
+								<div class="text-end">
+										<button type="submit" class="btn btn-primary btn-sm">Import</button>
+								</div>
+						</form>
+				</div>
+				@if (!empty($importErrors))
+						<div class="card-footer">
+								<h6>Log Error Import:</h6>
+								<div style="max-height: 200px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
+										<ul class="list-group list-group-flush">
+												@foreach ($importErrors as $error)
+														<li class="list-group-item text-danger">{{ $error }}</li>
+												@endforeach
+										</ul>
+								</div>
+						</div>
+				@endif
+		</div>
 
 		<!-- Form Tambah/Edit -->
-		<div class="card mb-4" data-aos="fade-up" data-aos-delay="200">
+		<div class="card mb-4">
 				<div class="card-header">
 						<h5>{{ $editId ? 'Edit Nilai' : 'Tambah Nilai' }}</h5>
 				</div>
@@ -71,7 +109,7 @@
 		</div>
 
 		<!-- Pencarian -->
-		<div class="card mb-4" data-aos="fade-up" data-aos-delay="300">
+		<div class="card mb-4">
 				<div class="card-body">
 						<div class="row">
 								<div class="col-md-6 mb-3">
@@ -90,7 +128,7 @@
 		</div>
 
 		<!-- Tabel Nilai -->
-		<div class="card" data-aos="fade-up" data-aos-delay="400">
+		<div class="card">
 				<div class="card-header">
 						<h5>Daftar Nilai</h5>
 				</div>
@@ -135,6 +173,7 @@
 				</div>
 		</div>
 </div>
+
 @push('css')
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 @endpush
