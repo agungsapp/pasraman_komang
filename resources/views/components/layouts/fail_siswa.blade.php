@@ -45,6 +45,23 @@
 						border-radius: 50px;
 						font-weight: bold;
 				}
+
+				.btn-profile {
+						background-color: #04415F;
+						color: #FFF !important;
+						padding: 3px 28px !important;
+						border-radius: 50px;
+						font-weight: bold;
+				}
+
+				.btn-profile:hover {
+						background-color: #fff;
+						border: 2px solid #04415F;
+						color: #04415F !important;
+						padding: 3px 28px !important;
+						border-radius: 50px;
+						font-weight: bold;
+				}
 		</style>
 </head>
 

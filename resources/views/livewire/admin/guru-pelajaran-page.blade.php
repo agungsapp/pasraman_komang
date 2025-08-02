@@ -1,4 +1,4 @@
-<div class="container-fluid px-4">
+<div class="container-fluid px-4" data-aos="fade-up">
 		<h1 class="text-capitalize mt-4">Data Guru Pelajaran</h1>
 
 		<div class="row mb-3">
@@ -69,15 +69,14 @@
 														@forelse($guruPelajarans as $index => $item)
 																<tr>
 																		<td>{{ $guruPelajarans->firstItem() + $index }}</td>
-																		<td>{{ $item->guru->name }}</td>
-																		<td>{{ $item->pelajaran->nama_pelajaran }}</td>
+																		<td>{{ $item->guru->name ?? 'N/A' }}</td>
+																		<td>{{ $item->pelajaran->nama_pelajaran ?? 'N/A' }}</td>
 																		<td>
-																				<button wire:click="detail({{ $item->guru_id }})" type="button" class="btn btn-sm btn-primary">
-																						Detail
-																				</button>
-																				<button wire:click="edit({{ $item->guru_id }})" class="btn btn-sm btn-warning">Edit</button>
-																				<button wire:click="delete({{ $item->guru_id }})" class="btn btn-sm btn-danger"
-																						onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+																				<button wire:click="detail({{ $item->guru_id }})" type="button"
+																						class="btn btn-sm btn-primary">Detail</button>
+																				<button wire:click="edit({{ $item->id }})" class="btn btn-sm btn-warning">Edit</button>
+																				<button wire:click="confirmDelete({{ $item->id }})"
+																						class="btn btn-sm btn-danger">Hapus</button>
 																		</td>
 																</tr>
 														@empty
@@ -96,7 +95,8 @@
 		</div>
 
 		<!-- Modal -->
-		<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
+		<div wire:ignore.self class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel"
+				aria-hidden="true">
 				<div class="modal-dialog">
 						<div class="modal-content">
 								<div class="modal-header">
@@ -106,7 +106,11 @@
 								<div class="modal-body">
 										@if ($modalDetails && count($modalDetails) > 0)
 												<p><strong>Guru:</strong>
-														{{ $guruPelajarans->where('guru_id', $guruPelajaranId)->first()->guru->name ?? 'Tidak ada guru' }}</p>
+														@php
+																$guru = GuruPelajaran::where('guru_id', $guruPelajaranId)->with('guru')->first();
+																echo $guru ? $guru->guru->name ?? 'N/A' : 'Tidak ada guru';
+														@endphp
+												</p>
 												<h6>Daftar Semua Pelajaran:</h6>
 												<table class="table-bordered table-striped table">
 														<thead>
@@ -119,8 +123,8 @@
 														<tbody>
 																@foreach ($modalDetails as $detail)
 																		<tr>
-																				<td>{{ $detail['pelajaran']->nama_pelajaran }}</td>
-																				<td>{{ $detail['pelajaran']->tahun_ajaran }}</td>
+																				<td>{{ $detail['pelajaran']->nama_pelajaran ?? 'N/A' }}</td>
+																				<td>{{ $detail['pelajaran']->tahun_ajaran ?? 'N/A' }}</td>
 																				<td>{{ $detail['isTaught'] ? 'Diajar' : 'Tidak Diajar' }}</td>
 																		</tr>
 																@endforeach
@@ -138,45 +142,73 @@
 		</div>
 </div>
 
-@push('js')
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+@push('css')
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+				integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 		<link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@endpush
+
+@push('js')
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+				integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<script>
-				$(document).ready(function() {
+				document.addEventListener('livewire:initialized', () => {
 						let table = $('#guruPelajaranTable').DataTable({
 								"language": {
 										"url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
 								},
 								"pageLength": 10,
-								"ordering": false
 						});
 
-						// Listen for Livewire 'reload-table' event
-						Livewire.on('reload-table', () => {
+						window.Livewire.on('reload-table', () => {
 								table.destroy();
 								table = $('#guruPelajaranTable').DataTable({
 										"language": {
 												"url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"
 										},
 										"pageLength": 10,
-										"ordering": false
 								});
 						});
 
-						// Listen for Livewire 'open-modal' event
-						Livewire.on('open-modal', event => {
+						window.Livewire.on('open-modal', event => {
 								const modal = new bootstrap.Modal(document.getElementById(event.detail.id));
 								modal.show();
 						});
 
-						// Listen for Livewire 'close-modal' event
-						Livewire.on('close-modal', event => {
+						window.Livewire.on('close-modal', event => {
 								const modal = bootstrap.Modal.getInstance(document.getElementById(event.detail.id));
 								if (modal) modal.hide();
+						});
+
+						window.Livewire.on('swal:alert', event => {
+								Swal.fire({
+										title: event.detail.title,
+										text: event.detail.text,
+										icon: event.detail.icon,
+										confirmButtonText: 'OK'
+								});
+						});
+
+						window.Livewire.on('swal:confirm', event => {
+								Swal.fire({
+										title: event.detail.title,
+										text: event.detail.text,
+										icon: event.detail.icon,
+										showCancelButton: true,
+										confirmButtonText: event.detail.confirmButtonText,
+										cancelButtonText: event.detail.cancelButtonText,
+								}).then(result => {
+										if (result.isConfirmed && event.detail.onConfirmed) {
+												window.Livewire.dispatch(event.detail.onConfirmed[0], {
+														id: event.detail.onConfirmed[1]
+												});
+										}
+								});
 						});
 				});
 		</script>

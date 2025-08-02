@@ -19,4 +19,9 @@ class Pelajaran extends Model
     {
         return $this->hasMany(PelajaranSiswa::class, 'pelajaran_id');
     }
+
+    public function gurus()
+    {
+        return $this->belongsToMany(User::class, 'guru_pelajarans', 'pelajaran_id', 'guru_id');
+    }
 }

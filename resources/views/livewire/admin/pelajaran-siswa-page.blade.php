@@ -70,7 +70,7 @@
 																<tr>
 																		<td>{{ $loop->iteration }}</td>
 																		<td>{{ $item->siswa->nama }}</td>
-																		<td>{{ $item->pelajaran->nama }}</td>
+																		<td>{{ $item->pelajaran->nama_pelajaran }}</td>
 																		<td>
 																				<button wire:click="edit({{ $item->id }})" class="btn btn-sm btn-warning">Edit</button>
 																				<button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-danger"

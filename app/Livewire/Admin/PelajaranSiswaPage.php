@@ -27,11 +27,13 @@ class PelajaranSiswaPage extends Component
 
     public function render()
     {
-        return view('livewire.admin.pelajaran-siswa-page', [
+        $data = [
             'pelajaranSiswas' => PelajaranSiswa::with(['siswa', 'pelajaran'])->get(),
             'siswas' => Siswa::all(),
             'pelajarans' => Pelajaran::all(),
-        ]);
+        ];
+        // dd($data);
+        return view('livewire.admin.pelajaran-siswa-page', $data);
     }
 
     public function store()

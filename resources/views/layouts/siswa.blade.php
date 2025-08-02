@@ -45,7 +45,26 @@
 						border-radius: 50px;
 						font-weight: bold;
 				}
+
+				.btn-profile {
+						background-color: #04415F;
+						color: #FFF !important;
+						padding: 3px 28px !important;
+						border-radius: 50px;
+						font-weight: bold;
+				}
+
+				.btn-profile:hover {
+						background-color: #fff;
+						border: 2px solid #04415F;
+						color: #04415F !important;
+						padding: 3px 28px !important;
+						border-radius: 50px;
+						font-weight: bold;
+				}
 		</style>
+
+		@stack('css')
 </head>
 
 <body class="index-page">
@@ -70,7 +89,7 @@
 
 										@if (Auth::guard('siswa')->check())
 												<li><a href="{{ route('pembayaran') }}">Pembayaran</a></li>
-												<li><a href="#">Nilai</a></li>
+												<li><a href="{{ route('nilai') }}">Nilai</a></li>
 										@endif
 
 										{{-- <li class="dropdown"><a href="#"><span>Nilai</span> <i
@@ -82,7 +101,7 @@
 														<li><a href="#">Dropdown 4</a></li>
 												</ul>
 										</li> --}}
-										<li><a href="#">Kontak</a></li>
+										{{-- <li><a href="#">Kontak</a></li> --}}
 										<li class="ms-auto">
 												@if (Auth::guard('siswa')->check())
 														<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
@@ -105,49 +124,30 @@
 		<footer id="footer" class="footer position-relative light-background">
 				<div class="footer-top container">
 						<div class="row gy-4">
-								<div class="col-lg-4 col-md-6 footer-about">
+								<div class="col-lg-12 footer-about">
 										<a href="/" class="logo d-flex align-items-center">
-												<span class="sitename">EduCenter</span>
+												<span class="sitename">Pasraman Saraswati</span>
 										</a>
 										<div class="footer-contact pt-3">
-												<p>Jl. Pendidikan No. 123, Jakarta Selatan</p>
+												<p>Jl. Kamboja Raya No.10 B, Labuhan Dalam, Kec. Tj. Senang, Kota Bandar Lampung, Lampung 35141</p>
 												<p><strong>Phone:</strong> <span>+62 21 1234 5678</span></p>
-												<p><strong>Email:</strong> <span>info@educenter.id</span></p>
+												<p><strong>Email:</strong> <span>info@pasraman.id</span></p>
 										</div>
 										<div class="social-links d-flex mt-4">
-												<a href="https://instagram.com/educenter.id"><i class="bi bi-instagram"></i></a>
-												<a href="https://facebook.com/educenter.id"><i class="bi bi-facebook"></i></a>
-												<a href="https://whatsapp.com/educenter.id"><i class="bi bi-whatsapp"></i></a>
+												<a href="https://instagram.com/pasraman.id"><i class="bi bi-instagram"></i></a>
+												<a href="https://facebook.com/pasraman.id"><i class="bi bi-facebook"></i></a>
+												<a href="https://whatsapp.com/pasraman.id"><i class="bi bi-whatsapp"></i></a>
 										</div>
 								</div>
 
-								<div class="col-lg-4 col-md-6 footer-links">
-										<h4>Link Penting</h4>
-										<ul>
-												<li><a href="{{ route('home') }}">Beranda</a></li>
-												{{-- <li><a href="{{ route('about') }}">Tentang Kami</a></li> --}}
-												{{-- <li><a href="{{ route('pengajar') }}">Pengajar</a></li> --}}
-												<li><a href="{{ route('login') }}">Login</a></li>
-												<li><a href="{{ route('register') }}">Daftar</a></li>
-										</ul>
-								</div>
 
-								<div class="col-lg-4 col-md-6 footer-links">
-										<h4>Layanan Kami</h4>
-										<ul>
-												<li><a href="#">Kelas Online</a></li>
-												<li><a href="#">Bimbingan Belajar</a></li>
-												<li><a href="#">Persiapan Ujian</a></li>
-										</ul>
-								</div>
 						</div>
 				</div>
 
 				<div class="copyright container mt-4 text-center">
-						<p>© <span>Copyright</span> <strong class="sitename px-1">EduCenter</strong> <span>All Rights Reserved</span></p>
-						<div class="credits">
-								Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-						</div>
+						<p>© <span>Copyright</span> <strong class="sitename px-1">Pasraman Saraswati Bandar Lampung</strong> <span>All
+										Rights Reserved</span></p>
+
 				</div>
 		</footer>
 
@@ -172,6 +172,8 @@
 		<script src="{{ asset('siswa') }}/js/main.js"></script>
 
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		@stack('js')
 </body>
 
 </html>

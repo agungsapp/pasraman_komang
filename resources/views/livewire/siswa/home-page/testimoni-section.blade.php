@@ -1,4 +1,4 @@
-<section id="pengajar" class="testimonials section">
+<section id="pengajar" class="testimonials section pt-5">
 		<!-- Section Title -->
 		<div class="section-title container" data-aos="fade-up">
 				<h2>Pengajar Kami</h2>
@@ -37,14 +37,11 @@
 												<div class="testimonial-item" data-aos="zoom-in" data-aos-delay="{{ 200 + $index * 100 }}">
 														<div class="testimonial-header">
 																<img
-																		src="{{ $guru->foto ? asset('storage/' . $guru->foto) : asset('siswa/img/person/person-f-4.webp') }}"
-																		alt="{{ $guru->nama }}" class="img-fluid" loading="lazy">
+																		src="{{ $guru->photo ? asset('storage/' . $guru->photo) : asset('siswa/img/person/person-f-4.webp') }}"
+																		alt="{{ $guru->name }}" class="img-fluid" loading="lazy">
 																<div class="rating">
-																		@for ($i = 0; $i < $guru->rating; $i++)
-																				<i class="bi bi-star-fill"></i>
-																		@endfor
-																		@for ($i = $guru->rating; $i < 5; $i++)
-																				<i class="bi bi-star"></i>
+																		@for ($i = 0; $i < 5; $i++)
+																				<i class="bi {{ $i < $guru->rating ? 'bi-star-fill' : 'bi-star' }}"></i>
 																		@endfor
 																</div>
 														</div>
@@ -54,8 +51,10 @@
 																</p>
 														</div>
 														<div class="testimonial-footer">
-																<h5>{{ $guru->nama }}</h5>
-																<span>{{ $guru->jabatan }}</span>
+																<h5>{{ $guru->name }}</h5>
+																{{-- <span>{{ $guru->role }}</span> --}}
+																<a href="{{ route('profile-guru', $guru->id) }}" class="btn btn-sm btn-profile mt-2"
+																		style="padding: 0 18px !important; ">Profil</a>
 																<div class="quote-icon">
 																		<i class="bi bi-chat-quote-fill"></i>
 																</div>

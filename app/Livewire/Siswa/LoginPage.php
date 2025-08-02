@@ -22,6 +22,14 @@ class LoginPage extends Component
         'password' => 'required|min:8',
     ];
 
+    public function mount()
+    {
+        if (Auth::guard('siswa')->check()) {
+            // dd("siswa");
+            return redirect()->to(route('home'));
+        }
+    }
+
     public function login()
     {
         // dd($this->email, $this->password);

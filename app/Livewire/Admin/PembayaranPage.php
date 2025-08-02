@@ -187,8 +187,11 @@ class PembayaranPage extends Component
 
     public function detail($id)
     {
+
+        // dd("oke");
         $this->pembayaranId = $id;
         $this->modalDetails = Pembayaran::with(['details.biayaPendidikan.komponenBiaya', 'siswa'])->findOrFail($id);
+        // dd($this->modalDetails);
         $this->dispatch('open-modal', id: 'modalDetail');
     }
 

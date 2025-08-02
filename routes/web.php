@@ -3,20 +3,25 @@
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\SiswaAuthController;
 use App\Livewire\Admin\AdminLoginPage;
+use App\Livewire\Admin\AdminNilaiPage;
 use App\Livewire\Admin\BiayaPendidikanPage;
 use App\Livewire\Admin\DashboardPage;
 use App\Livewire\Admin\GuruPage;
 use App\Livewire\Admin\GuruPelajaranPage;
+use App\Livewire\Admin\JadwalSiswaPage;
 use App\Livewire\Admin\KelasPage;
 use App\Livewire\Admin\KomponenBiayaPage;
 use App\Livewire\Admin\PelajaranPage;
 use App\Livewire\Admin\PelajaranSiswaPage;
 use App\Livewire\Admin\PembayaranPage;
+use App\Livewire\Admin\ProfilePage;
 use App\Livewire\Admin\SiswaPage;
 use App\Livewire\Siswa\HomePage;
 use App\Livewire\Siswa\LoginPage;
 use App\Livewire\Siswa\RegisterPage;
+use App\Livewire\Siswa\SiswaNilaiPage;
 use App\Livewire\Siswa\SiswaPembayaranPage;
+use App\Livewire\Siswa\SiswaProfilGuruPage;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,6 +35,8 @@ Route::post('logout', [SiswaAuthController::class, 'logout'])->name('logout');
 Route::get('register', RegisterPage::class)->name('register');
 Route::get('home', HomePage::class)->name('home');
 Route::get('pembayaran', SiswaPembayaranPage::class)->name('pembayaran');
+Route::get('nilai', SiswaNilaiPage::class)->name('nilai');
+Route::get('/profile-guru/{id_guru}', SiswaProfilGuruPage::class)->name('profile-guru');
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -52,5 +59,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // manajemen kelas & siswa
         Route::get('guru-pelajaran', GuruPelajaranPage::class)->name('guru-pelajaran');
         Route::get('pelajaran-siswa', PelajaranSiswaPage::class)->name('pelajaran-siswa');
+        Route::get('jadwal', JadwalSiswaPage::class)->name('jadwal');
+        Route::get('profile', ProfilePage::class)->name('profile');
+        Route::get('nilai', AdminNilaiPage::class)->name('nilai');
     });
 });

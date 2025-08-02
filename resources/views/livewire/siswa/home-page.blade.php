@@ -143,15 +143,15 @@
 
 		<!-- Stats Section -->
 		<section id="stats" class="stats section">
-
 				<div class="container" data-aos="fade-up" data-aos-delay="100">
-
 						<div class="row justify-content-center">
 								<div class="col-lg-8 text-center">
 										<div class="intro-content" data-aos="fade-up" data-aos-delay="200">
-												<h2 class="section-heading">Transforming Lives Through Quality Education</h2>
-												<p class="section-description">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-														ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+												<h2 class="section-heading">Membentuk Generasi Berlandaskan Dharma dan Pengetahuan</h2>
+												<p class="section-description">
+														Pasraman Saraswati Hindu mengintegrasikan nilai-nilai Hindu, budaya Bali, dan pendidikan modern untuk
+														mencetak generasi yang berakhlak mulia dan berpengetahuan luas.
+												</p>
 										</div>
 								</div>
 						</div>
@@ -161,16 +161,16 @@
 										<div class="metric-card" data-aos="flip-left" data-aos-delay="300">
 												<div class="metric-header">
 														<div class="metric-icon-wrapper">
-																<i class="bi bi-mortarboard-fill"></i>
+																<i class="bi bi-book-fill"></i>
 														</div>
 														<div class="metric-value">
-																<span data-purecounter-start="0" data-purecounter-end="87" data-purecounter-duration="1"
-																		class="purecounter"></span>%
+																<span data-purecounter-start="0" data-purecounter-end="{{ \App\Models\Siswa::count() }}"
+																		data-purecounter-duration="1" class="purecounter"></span>
 														</div>
 												</div>
 												<div class="metric-info">
-														<h4>Success Rate</h4>
-														<p>Alumni employment within 6 months</p>
+														<h4>Jumlah Siswa</h4>
+														<p>Siswa aktif di Pasraman</p>
 												</div>
 										</div>
 								</div>
@@ -179,16 +179,17 @@
 										<div class="metric-card" data-aos="flip-left" data-aos-delay="400">
 												<div class="metric-header">
 														<div class="metric-icon-wrapper">
-																<i class="bi bi-building"></i>
+																<i class="bi bi-journal-text"></i>
 														</div>
 														<div class="metric-value">
-																<span data-purecounter-start="0" data-purecounter-end="8" data-purecounter-duration="1"
-																		class="purecounter"></span>
+																<span data-purecounter-start="0"
+																		data-purecounter-end="{{ \App\Models\Pelajaran::where('is_active', 1)->count() }}"
+																		data-purecounter-duration="1" class="purecounter"></span>
 														</div>
 												</div>
 												<div class="metric-info">
-														<h4>Campus Locations</h4>
-														<p>Across the country serving students</p>
+														<h4>Pelajaran Aktif</h4>
+														<p>Mata pelajaran Hindu dan akademik</p>
 												</div>
 										</div>
 								</div>
@@ -197,16 +198,17 @@
 										<div class="metric-card" data-aos="flip-left" data-aos-delay="500">
 												<div class="metric-header">
 														<div class="metric-icon-wrapper">
-																<i class="bi bi-trophy-fill"></i>
+																<i class="bi bi-person-arms-up"></i>
 														</div>
 														<div class="metric-value">
-																<span data-purecounter-start="0" data-purecounter-end="250" data-purecounter-duration="1"
-																		class="purecounter"></span>+
+																<span data-purecounter-start="0"
+																		data-purecounter-end="{{ \App\Models\User::where('role', 'guru')->count() }}"
+																		data-purecounter-duration="1" class="purecounter"></span>
 														</div>
 												</div>
 												<div class="metric-info">
-														<h4>Awards Received</h4>
-														<p>Recognition for educational excellence</p>
+														<h4>Jumlah Guru</h4>
+														<p>Pendidik berdedikasi untuk dharma</p>
 												</div>
 										</div>
 								</div>
@@ -215,16 +217,16 @@
 										<div class="metric-card" data-aos="flip-left" data-aos-delay="600">
 												<div class="metric-header">
 														<div class="metric-icon-wrapper">
-																<i class="bi bi-globe"></i>
+																<i class="bi bi-award-fill"></i>
 														</div>
 														<div class="metric-value">
-																<span data-purecounter-start="0" data-purecounter-end="65" data-purecounter-duration="1"
+																<span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1"
 																		class="purecounter"></span>+
 														</div>
 												</div>
 												<div class="metric-info">
-														<h4>Countries Represented</h4>
-														<p>Diverse international student body</p>
+														<h4>Penghargaan</h4>
+														<p>Prestasi dalam pendidikan Hindu</p>
 												</div>
 										</div>
 								</div>
@@ -236,52 +238,51 @@
 												<div class="row align-items-center">
 														<div class="col-lg-6">
 																<div class="highlights-content">
-																		<h3 class="highlights-title">Building Tomorrow's Leaders Today</h3>
-																		<p class="highlights-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-																				dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-																				officia deserunt mollit anim.</p>
+																		<h3 class="highlights-title">Menanamkan Nilai-Nilai Hindu untuk Masa Depan</h3>
+																		<p class="highlights-text">
+																				Kami mengajarkan Weda, yoga, dan budaya Bali untuk membentuk karakter mulia berdasarkan prinsip Tri
+																				Hita Karana, harmoni dengan Tuhan, manusia, dan alam.
+																		</p>
 																		<div class="highlights-features">
 																				<div class="feature-item" data-aos="fade-right" data-aos-delay="800">
 																						<i class="bi bi-check-circle-fill"></i>
-																						<span>Innovative curriculum design</span>
+																						<span>Kurikulum berbasis Weda</span>
 																				</div>
 																				<div class="feature-item" data-aos="fade-right" data-aos-delay="900">
 																						<i class="bi bi-check-circle-fill"></i>
-																						<span>World-class faculty expertise</span>
+																						<span>Guru ahli spiritual Hindu</span>
 																				</div>
 																				<div class="feature-item" data-aos="fade-right" data-aos-delay="1000">
 																						<i class="bi bi-check-circle-fill"></i>
-																						<span>Comprehensive student support</span>
+																						<span>Pembinaan karakter mulia</span>
 																				</div>
 																		</div>
-																		<div class="highlights-cta">
-																				<a href="#" class="cta-btn primary">Explore Programs</a>
-																				<a href="#" class="cta-btn secondary">Download Brochure</a>
-																		</div>
+
 																</div>
 														</div>
 														<div class="col-lg-6">
 																<div class="highlights-gallery">
 																		<div class="gallery-grid">
 																				<div class="gallery-item large" data-aos="zoom-in" data-aos-delay="800">
-																						<img src="{{ asset('siswa') }}/img/education/campus-3.webp" alt="Campus Life" class="img-fluid"
-																								loading="lazy">
+																						<img src="https://jatengprov.go.id/wp-content/uploads/2023/03/IMG-20230323-WA0009.jpg"
+																								alt="Upacara Hindu" class="img-fluid" loading="lazy">
 																						<div class="gallery-overlay">
-																								<h5>Modern Campus</h5>
+																								<h5>Upacara Keagamaan</h5>
 																						</div>
 																				</div>
-																				<div class="gallery-item small" data-aos="zoom-in" data-aos-delay="900">
-																						<img src="{{ asset('siswa') }}/img/education/students-5.webp" alt="Students" class="img-fluid"
+																				{{-- <div class="gallery-item small" data-aos="zoom-in" data-aos-delay="900">
+																						<img src="{{ asset('siswa/img/pasraman/yoga.webp') }}" alt="Yoga" class="img-fluid"
 																								loading="lazy">
 																						<div class="gallery-overlay">
-																								<h6>Student Life</h6>
+																								<h6>Latihan Yoga</h6>
 																						</div>
-																				</div>
+																				</div> --}}
 																				<div class="gallery-item small" data-aos="zoom-in" data-aos-delay="1000">
-																						<img src="{{ asset('siswa') }}/img/education/teacher-7.webp" alt="Faculty" class="img-fluid"
-																								loading="lazy">
+																						<img
+																								src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/67/2024/06/16/WhatsApp-Image-2024-06-16-at-212554-1859844550.jpeg"
+																								alt="Belajar Weda" class="img-fluid" loading="lazy">
 																						<div class="gallery-overlay">
-																								<h6>Expert Faculty</h6>
+																								<h6>Pembelajaran Weda</h6>
 																						</div>
 																				</div>
 																		</div>
@@ -291,17 +292,15 @@
 										</div>
 								</div>
 						</div>
-
 				</div>
-
 		</section><!-- /Stats Section -->
 
 		<!-- Recent News Section -->
-		@livewire('siswa.home-page.news-section')
+		{{-- @livewire('siswa.home-page.news-section') --}}
 		<!-- /Recent News Section -->
 
 		<!-- Events Section -->
-		@livewire('siswa.home-page.event-section')
+		{{-- @livewire('siswa.home-page.event-section') --}}
 		<!-- /Events Section -->
 
 </main>
