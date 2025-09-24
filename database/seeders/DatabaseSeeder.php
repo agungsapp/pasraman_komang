@@ -24,7 +24,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'role' => 'admin'
         ]);
-        User::factory(5)->create();
+        // User::factory(5)->create();
+
+        $this->call(GuruSeeder::class);
 
         $jenjangs = [
             ['nama' => 'SD'],
@@ -37,7 +39,24 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->call(KelasSeeder::class);
-        Siswa::factory()->count(50)->create();
+
+        // Siswa::create([
+        //     'jenjang_id'     => 1,
+        //     'kelas_id' => 1,
+        //     'nama'           => 'agung saputra',
+        //     'email'            => 'agung.dni19@gmail.com',
+        //     'no_orang_tua'   => '085855558888',
+        //     'nama_orang_tua' => 'ya ada namanya',
+        //     'alamat'         => 'Jl. pramuka bedera',
+        //     'tanggal_lahir'  => '11/08/2010',
+        //     'tempat_lahir'  => 'tanjung harapan',
+        //     'password'       => Hash::make('siswa123'),
+        //     'is_active'      => true,
+        // ]);
+
+        // Siswa::factory()->count(50)->create();
+
+        $this->call(SiswaSeeder::class);
         Pelajaran::factory()->count(10)->create();
         $this->call(KomponenBiayaSeeder::class);
         $this->call(BiayaPendidikanSeeder::class);

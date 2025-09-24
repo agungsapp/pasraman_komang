@@ -14,7 +14,6 @@ class GuruPage extends Component
     public $name = '';
     public $email = '';
     public $password = '';
-    public $is_active = false;
     public $editMode = false;
     public $guruId = null;
 
@@ -24,7 +23,7 @@ class GuruPage extends Component
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email' . ($this->editMode ? ',' . $this->guruId : ''),
             'password' => $this->editMode ? 'nullable|string|min:8' : 'required|string|min:8',
-            'is_active' => 'boolean',
+
         ];
     }
 
@@ -44,7 +43,6 @@ class GuruPage extends Component
             'email' => $this->email,
             'password' => bcrypt($this->password),
             'role' => 'guru',
-            'is_active' => $this->is_active,
         ]);
 
         $this->resetForm();
@@ -58,7 +56,6 @@ class GuruPage extends Component
         $this->guruId = $id;
         $this->name = $guru->name;
         $this->email = $guru->email;
-        $this->is_active = $guru->is_active;
         $this->editMode = true;
     }
 
@@ -70,7 +67,6 @@ class GuruPage extends Component
         $guru->update([
             'name' => $this->name,
             'email' => $this->email,
-            'is_active' => $this->is_active,
             'password' => $this->password ? bcrypt($this->password) : $guru->password,
         ]);
 
@@ -96,7 +92,6 @@ class GuruPage extends Component
         $this->name = '';
         $this->email = '';
         $this->password = '';
-        $this->is_active = false;
         $this->editMode = false;
         $this->guruId = null;
         $this->resetErrorBag();

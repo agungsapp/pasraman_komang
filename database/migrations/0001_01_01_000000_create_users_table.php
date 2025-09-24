@@ -18,6 +18,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'staff', 'guru'])->default('guru');
+            $table->text('deskripsi')->nullable();
+            $table->integer('rating')->nullable();
+            $table->string('photo')->default('guru/default.png');
             $table->rememberToken();
             $table->timestamps();
         });

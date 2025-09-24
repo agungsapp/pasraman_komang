@@ -1,5 +1,5 @@
 <div class="container-fluid px-4">
-		<h1 class="text-capitalize mt-4">Data Pembayaran</h1>
+		<h1 class="text-capitalize my-4">Data Pembayaran</h1>
 
 		<div class="row mb-3">
 				<div class="col-12">
@@ -7,6 +7,13 @@
 								<div class="card-body">
 										<!-- Form for Create/Update -->
 										<form wire:submit.prevent="{{ $editMode ? 'update' : 'store' }}">
+												<div class="row">
+														<div class="col-12 mb-3">
+																<h3>
+																		Buat Tagihan
+																</h3>
+														</div>
+												</div>
 												<div class="row">
 														<div class="col-md-4 mb-3">
 																<label for="siswa_id" class="form-label">Siswa</label>
@@ -248,6 +255,7 @@
 
 						// Listen for Livewire event to open modal
 						window.addEventListener('open-modal', event => {
+								// alert("berhasil di derngarkan")
 								const modal = new bootstrap.Modal(document.getElementById(event.detail.id));
 								modal.show();
 						});

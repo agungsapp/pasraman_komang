@@ -17,10 +17,13 @@ class Siswa extends Authenticatable
         'jenjang_id',
         'kelas_id',
         'nama',
+        'nisn', // tambahan baru
         'email',
         'no_orang_tua',
+        'nama_orang_tua', // tambahan baru
         'alamat',
         'tanggal_lahir',
+        'tempat_lahir', // tambahan baru
         'password',
         'is_active',
     ];
@@ -54,5 +57,10 @@ class Siswa extends Authenticatable
     public function pembayarans()
     {
         return $this->hasMany(Pembayaran::class);
+    }
+
+    public function pelajaranSiswas()
+    {
+        return $this->hasMany(PelajaranSiswa::class, 'siswa_id');
     }
 }

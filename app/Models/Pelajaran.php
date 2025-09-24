@@ -14,4 +14,14 @@ class Pelajaran extends Model
         'tahun_ajaran',
         'is_active',
     ];
+
+    public function pelajaranSiswas()
+    {
+        return $this->hasMany(PelajaranSiswa::class, 'pelajaran_id');
+    }
+
+    public function gurus()
+    {
+        return $this->belongsToMany(User::class, 'guru_pelajarans', 'pelajaran_id', 'guru_id');
+    }
 }

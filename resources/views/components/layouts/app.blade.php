@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
 		<meta charset="utf-8" />
@@ -7,13 +7,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
-		<title>{{ $title ?? 'Pasraman Saraswati' }}</title>
+		<title>Dashboard - SB Admin</title>
 		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 		<link href="{{ asset('sb') }}/css/styles.css" rel="stylesheet" />
 		<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
-		@stack('css')
 		@livewireStyles
+		@stack('css')
 </head>
 
 <body class="sb-nav-fixed">
@@ -40,8 +39,8 @@
 										<i class="fas fa-user fa-fw"></i>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-										<li><a class="dropdown-item" href="#!">Settings</a></li>
-										<li><a class="dropdown-item" href="#!">Activity Log</a></li>
+										<li><a class="dropdown-item" href="{{ route('admin.profile') }}">Profile</a></li>
+										{{-- <li><a class="dropdown-item" href="#!">Activity Log</a></li> --}}
 										<li>
 												<hr class="dropdown-divider" />
 										</li>
@@ -65,135 +64,115 @@
 														<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 														Dashboard
 												</a>
-												<div class="sb-sidenav-menu-heading">Master</div>
-												@php
-														$masterMenu = [
-														    ['route' => 'admin.kelas', 'label' => 'Data Kelas'],
-														    ['route' => 'admin.siswa', 'label' => 'Data Siswa'],
-														    ['route' => 'admin.guru', 'label' => 'Data Guru'],
-														    // Tambah menu lain di sini jika perlu
-														];
 
-														// Cek jika salah satu route di menu ini aktif
-														$isMasterActive = collect($masterMenu)->pluck('route')->contains(fn($route) => Route::is($route));
-												@endphp
+												@can('access-master')
 
-												<a class="nav-link {{ $isMasterActive ? '' : 'collapsed' }}" href="#" data-bs-toggle="collapse"
-														data-bs-target="#collapseMaster" aria-expanded="{{ $isMasterActive ? 'true' : 'false' }}"
-														aria-controls="collapseMaster">
-														<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-														Master Data
-														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-												</a>
+														<div class="sb-sidenav-menu-heading">Master</div>
+														@php
+																$masterMenu = [
+																    ['route' => 'admin.pelajaran', 'label' => 'Data Pelajaran'],
+																    ['route' => 'admin.kelas', 'label' => 'Data Kelas'],
+																    ['route' => 'admin.siswa', 'label' => 'Data Siswa'],
+																    ['route' => 'admin.guru', 'label' => 'Data Guru'],
+																];
 
-												<div class="{{ $isMasterActive ? 'show' : '' }} collapse" id="collapseMaster" aria-labelledby="headingOne"
-														data-bs-parent="#sidenavAccordion">
-														<nav class="sb-sidenav-menu-nested nav">
-																@foreach ($masterMenu as $menu)
-																		<a class="nav-link {{ Route::is($menu['route']) ? 'active' : '' }}"
-																				href="{{ route($menu['route']) }}">
-																				{{ $menu['label'] }}
-																		</a>
-																@endforeach
-														</nav>
-												</div>
+																// Cek jika salah satu route di menu Master aktif
+																$isMasterActive = collect($masterMenu)->pluck('route')->contains(fn($route) => Route::is($route));
+														@endphp
 
-												<div class="sb-sidenav-menu-heading">Pembayaran</div>
-												@php
-														$pembayaranMenu = [
-														    ['route' => 'admin.komponen', 'label' => 'Komponen Biaya'],
-														    ['route' => 'admin.pembayaran', 'label' => 'Pembayaran'],
-														    // Tambah menu lain di sini jika perlu
-														];
+														<a class="nav-link {{ $isMasterActive ? '' : 'collapsed' }}" href="#" data-bs-toggle="collapse"
+																data-bs-target="#collapseMaster" aria-expanded="{{ $isMasterActive ? 'true' : 'false' }}"
+																aria-controls="collapseMaster">
+																<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+																Master Data
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
 
-														// Cek jika salah satu route di menu ini aktif
-														$isPembayaranActive = collect($pembayaranMenu)->pluck('route')->contains(fn($route) => Route::is($route));
-												@endphp
+														<div class="{{ $isMasterActive ? 'show' : '' }} collapse" id="collapseMaster" aria-labelledby="headingOne"
+																data-bs-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+																		@foreach ($masterMenu as $menu)
+																				<a class="nav-link {{ Route::is($menu['route']) ? 'active' : '' }}"
+																						href="{{ route($menu['route']) }}">
+																						{{ $menu['label'] }}
+																				</a>
+																		@endforeach
+																</nav>
+														</div>
 
-												<a class="nav-link {{ $isPembayaranActive ? '' : 'collapsed' }}" href="#" data-bs-toggle="collapse"
-														data-bs-target="#collapseMaster" aria-expanded="{{ $isPembayaranActive ? 'true' : 'false' }}"
-														aria-controls="collapseMaster">
-														<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-														Pembayaran
-														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-												</a>
-
-												<div class="{{ $isPembayaranActive ? 'show' : '' }} collapse" id="collapseMaster"
-														aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-														<nav class="sb-sidenav-menu-nested nav">
-																@foreach ($pembayaranMenu as $menu)
-																		<a class="nav-link {{ Route::is($menu['route']) ? 'active' : '' }}"
-																				href="{{ route($menu['route']) }}">
-																				{{ $menu['label'] }}
-																		</a>
-																@endforeach
-														</nav>
-												</div>
+												@endcan
 
 
+												@can('access-pembayaran')
+														<div class="sb-sidenav-menu-heading">Pembayaran</div>
+														@php
+																$pembayaranMenu = [
+																    ['route' => 'admin.komponen', 'label' => 'Komponen Biaya'],
+																    ['route' => 'admin.biaya-pendidikan', 'label' => 'Biaya Pendidikan'],
+																    ['route' => 'admin.pembayaran', 'label' => 'Pembayaran'],
+																];
+
+																// Cek jika salah satu route di menu Pembayaran aktif
+																$isPembayaranActive = collect($pembayaranMenu)
+																    ->pluck('route')
+																    ->contains(fn($route) => Route::is($route));
+														@endphp
+
+														<a class="nav-link {{ $isPembayaranActive ? '' : 'collapsed' }}" href="#" data-bs-toggle="collapse"
+																data-bs-target="#collapsePembayaran" aria-expanded="{{ $isPembayaranActive ? 'true' : 'false' }}"
+																aria-controls="collapsePembayaran">
+																<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+																Pembayaran
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+
+														<div class="{{ $isPembayaranActive ? 'show' : '' }} collapse" id="collapsePembayaran"
+																aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+																		@foreach ($pembayaranMenu as $menu)
+																				<a class="nav-link {{ Route::is($menu['route']) ? 'active' : '' }}"
+																						href="{{ route($menu['route']) }}">
+																						{{ $menu['label'] }}
+																				</a>
+																		@endforeach
+																</nav>
+														</div>
+												@endcan
+												@can('access-nilai')
+														<div class="sb-sidenav-menu-heading">Manajemen Kelas & Siswa</div>
+														@php
+																$kelasSiswaMenu = [
+																    ['route' => 'admin.guru-pelajaran', 'label' => 'Guru Pelajaran'],
+																    ['route' => 'admin.pelajaran-siswa', 'label' => 'Pelajaran Siswa'],
+																    ['route' => 'admin.nilai', 'label' => 'Manejemen Nilai'],
+																    ['route' => 'admin.jadwal', 'label' => 'Manejemen Jadwal'],
+																];
+																// Cek jika salah satu route di menu Kelas & Siswa aktif
+																$isKelasSiswaActive = collect($kelasSiswaMenu)
+																    ->pluck('route')
+																    ->contains(fn($route) => Route::is($route));
+														@endphp
+														<a class="nav-link {{ $isKelasSiswaActive ? '' : 'collapsed' }}" href="#" data-bs-toggle="collapse"
+																data-bs-target="#collapseKelasSiswa" aria-expanded="{{ $isKelasSiswaActive ? 'true' : 'false' }}"
+																aria-controls="collapseKelasSiswa">
+																<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+																Kelas & Siswa
+																<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+														</a>
+														<div class="{{ $isKelasSiswaActive ? 'show' : '' }} collapse" id="collapseKelasSiswa"
+																aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+																<nav class="sb-sidenav-menu-nested nav">
+																		@foreach ($kelasSiswaMenu as $menu)
+																				<a class="nav-link {{ Route::is($menu['route']) ? 'active' : '' }}"
+																						href="{{ route($menu['route']) }}">
+																						{{ $menu['label'] }}
+																				</a>
+																		@endforeach
+																</nav>
+														</div>
+												@endcan
 
 
-
-												<div class="sb-sidenav-menu-heading">Interface</div>
-												<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
-														aria-expanded="false" aria-controls="collapseLayouts">
-														<div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-														Layouts
-														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-												</a>
-												<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-														data-bs-parent="#sidenavAccordion">
-														<nav class="sb-sidenav-menu-nested nav">
-																<a class="nav-link" href="layout-static.html">Static Navigation</a>
-																<a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-														</nav>
-												</div>
-												<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-														aria-expanded="false" aria-controls="collapsePages">
-														<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-														Pages
-														<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-												</a>
-												<div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-														data-bs-parent="#sidenavAccordion">
-														<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-																<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-																		data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-																		Authentication
-																		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-																</a>
-																<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-																		data-bs-parent="#sidenavAccordionPages">
-																		<nav class="sb-sidenav-menu-nested nav">
-																				<a class="nav-link" href="login.html">Login</a>
-																				<a class="nav-link" href="register.html">Register</a>
-																				<a class="nav-link" href="password.html">Forgot Password</a>
-																		</nav>
-																</div>
-																<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-																		data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-																		Error
-																		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-																</a>
-																<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-																		data-bs-parent="#sidenavAccordionPages">
-																		<nav class="sb-sidenav-menu-nested nav">
-																				<a class="nav-link" href="401.html">401 Page</a>
-																				<a class="nav-link" href="404.html">404 Page</a>
-																				<a class="nav-link" href="500.html">500 Page</a>
-																		</nav>
-																</div>
-														</nav>
-												</div>
-												<div class="sb-sidenav-menu-heading">Addons</div>
-												<a class="nav-link" href="charts.html">
-														<div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-														Charts
-												</a>
-												<a class="nav-link" href="tables.html">
-														<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-														Tables
-												</a>
 										</div>
 								</div>
 								<div class="sb-sidenav-footer">
@@ -209,17 +188,14 @@
 						<footer class="bg-light mt-auto py-4">
 								<div class="container-fluid px-4">
 										<div class="d-flex align-items-center justify-content-between small">
-												<div class="text-muted">Copyright &copy; Your Website 2023</div>
-												<div>
-														<a href="#">Privacy Policy</a>
-														&middot;
-														<a href="#">Terms &amp; Conditions</a>
-												</div>
+												<div class="text-muted">Copyright &copy; Pasraman Saraswati Bandar Lampung 2023</div>
+
 										</div>
 								</div>
 						</footer>
 				</div>
 		</div>
+		@livewireScripts
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
 		</script>
 		<script src="{{ asset('sb') }}/js/scripts.js"></script>
@@ -229,10 +205,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 				crossorigin="anonymous"></script>
 		<script src="{{ asset('sb') }}/js/datatables-simple-demo.js"></script>
-
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		@livewireScripts
-		@stack('js')
+		@stack('css')
 </body>
 
 </html>

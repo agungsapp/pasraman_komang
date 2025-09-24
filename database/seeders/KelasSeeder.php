@@ -18,9 +18,9 @@ class KelasSeeder extends Seeder
         //         'nama' => 'ps'
         //     ],
         // ];
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 8; $i++) {
             Kelas::create([
-                'nama' => 'ps' . $i + 1,
+                'nama' => $i + 1,
             ]);
         }
     }
