@@ -83,7 +83,7 @@
 						<div class="row mt-5">
 								<div class="col-lg-12">
 										<div class="core-values" data-aos="fade-up" data-aos-delay="500">
-												<h3 class="mb-4 text-center">Nilai-Nilai Inti</h3>
+												<h3 class="mb-4 text-center">Nilai-Nilai Inti 1</h3>
 												<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 														<div class="col">
 																<div class="value-card">
@@ -264,25 +264,27 @@
 																<div class="highlights-gallery">
 																		<div class="gallery-grid">
 																				<div class="gallery-item large" data-aos="zoom-in" data-aos-delay="800">
-																						<img src="https://jatengprov.go.id/wp-content/uploads/2023/03/IMG-20230323-WA0009.jpg"
+																						<img
+																								src="https://scontent.ftkg3-1.fna.fbcdn.net/v/t39.30808-6/527840699_24208125935488186_4243358137429545361_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeESeHG5HKE3p6UZlUCzLIAnn5Z2jsFhoA6flnaOwWGgDgS_UuSEE_gDEYOJZlMm4_detgeL5vPHFhiV1tiZCsO0&_nc_ohc=50rof8rJhoMQ7kNvwFQeGzh&_nc_oc=AdmULWV7wH3fbv2w8acVx1gqtAfrfXTnKkguQmRLNmy__N4mvGx2YVWq1pPIfgmT88I&_nc_zt=23&_nc_ht=scontent.ftkg3-1.fna&_nc_gid=PsINHFeFG0UzpNVT1aJ1xw&oh=00_AfVXAPy-fJ-SUN97vIezYIGzpmIXJ9Jj8IgSY1qVJtXb_g&oe=6899194D"
 																								alt="Upacara Hindu" class="img-fluid" loading="lazy">
 																						<div class="gallery-overlay">
-																								<h5>Upacara Keagamaan</h5>
+																								<h5>Kegiatan Belajar Mengajar</h5>
 																						</div>
 																				</div>
-																				{{-- <div class="gallery-item small" data-aos="zoom-in" data-aos-delay="900">
-																						<img src="{{ asset('siswa/img/pasraman/yoga.webp') }}" alt="Yoga" class="img-fluid"
-																								loading="lazy">
+																				<div class="gallery-item small" data-aos="zoom-in" data-aos-delay="900">
+																						<img
+																								src="https://scontent.ftkg3-1.fna.fbcdn.net/v/t39.30808-6/483511777_1621635891914526_664186536980905210_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHCSJNauBhmtOG2DZh6tuigQRgrznF1y6VBGCvOcXXLpQICXWcZHgzDqMo2mY1tNCsGZ2NfFJhs0QSEhbuunCTS&_nc_ohc=d3JILEhNLBcQ7kNvwGAfz6n&_nc_oc=AdkNTUoDwEmPryH4-ptNi5IxPvdt3e7OzT6G7Ls2EUES5bI61EAghbeDsQqFZ8Af4gI&_nc_zt=23&_nc_ht=scontent.ftkg3-1.fna&_nc_gid=QxuG7uDbwcXRTaKRNuGeKg&oh=00_AfV4hnmkrZjEGimU1I8iNDrB7l3qbFlqJUCcAxfSR8GugQ&oe=6896C605"
+																								alt="Yoga" class="img-fluid" loading="lazy">
 																						<div class="gallery-overlay">
-																								<h6>Latihan Yoga</h6>
+																								<h6>Kegiatan Belajar</h6>
 																						</div>
-																				</div> --}}
+																				</div>
 																				<div class="gallery-item small" data-aos="zoom-in" data-aos-delay="1000">
 																						<img
-																								src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/67/2024/06/16/WhatsApp-Image-2024-06-16-at-212554-1859844550.jpeg"
+																								src="https://scontent.ftkg3-1.fna.fbcdn.net/v/t39.30808-6/482250259_1622055921872523_6119359802239579929_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFRlZlgV_DcXNtwrIGOALQuJIJQmgmYykgkglCaCZjKSC1LX58G6ZXh9DEhOkz_UBW_4CTt9kydFLa0MKBh-baq&_nc_ohc=oBIvj9zd_FAQ7kNvwHyNheY&_nc_oc=AdllHto6L0orEGkayLThVnvWMFEoyzLAGUS-N40yjFBVE103OPq5JaxhstkzKCmZtLw&_nc_zt=23&_nc_ht=scontent.ftkg3-1.fna&_nc_gid=EhoBRQ79NtDacyq7oDGLwA&oh=00_AfXKEk2j9nXFHVo6Cd6S8MW4RGH_xNm5F0F0VRZnZDzRnw&oe=6896A1A5"
 																								alt="Belajar Weda" class="img-fluid" loading="lazy">
 																						<div class="gallery-overlay">
-																								<h6>Pembelajaran Weda</h6>
+																								<h6>Pembelajaran Jenjang SD</h6>
 																						</div>
 																				</div>
 																		</div>

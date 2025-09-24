@@ -214,6 +214,7 @@
 						// Listen for Livewire's dispatched event
 						window.addEventListener('reload-table', function() {
 								table.destroy();
+								console.log("datatable jalan")
 								table = $('#siswaTable').DataTable({
 										"language": {
 												"url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/id.json"

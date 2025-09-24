@@ -5,6 +5,7 @@ namespace App\Livewire\Siswa;
 use App\Models\Jenjang;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -34,14 +35,17 @@ class RegisterPage extends Component
     public function mount()
     {
         $this->jenjangs = Jenjang::all();
+        // dd($this->jenjangs);
     }
 
     public function register()
     {
-        $this->validate();
+        // $this->validate();
+
 
         try {
-            Siswa::create([
+            Log::info('Oke jalan mau create');
+            $siswa =  Siswa::create([
                 'nama' => $this->nama,
                 'email' => $this->email,
                 'password' => Hash::make($this->password),
@@ -51,10 +55,15 @@ class RegisterPage extends Component
                 'tanggal_lahir' => $this->tanggal_lahir,
                 'is_active' => true, // Default true
             ]);
+            Log::info('Oke jalan sudha di create');
+
+            // dd($siswa);
 
             session()->flash('message', 'Registrasi berhasil! Silakan login.');
+            // dd("oke");
             return redirect()->route('login');
         } catch (\Exception $e) {
+            Log::error($e);
             session()->flash('error', 'Terjadi kesalahan saat registrasi. Silakan coba lagi.');
         }
     }

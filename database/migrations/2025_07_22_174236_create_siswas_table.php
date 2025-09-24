@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nisn')->nullable();
             $table->string('email');
-            $table->string('no_orang_tua');
+            $table->string('no_orang_tua')->nullable();
             $table->string('nama_orang_tua');
             $table->text('alamat');
             $table->date('tanggal_lahir');

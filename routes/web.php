@@ -22,9 +22,14 @@ use App\Livewire\Siswa\RegisterPage;
 use App\Livewire\Siswa\SiswaNilaiPage;
 use App\Livewire\Siswa\SiswaPembayaranPage;
 use App\Livewire\Siswa\SiswaProfilGuruPage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+
+    if (Auth::guard('web')->check()) {
+        return redirect()->to('/admin/dashboard');
+    }
     return redirect()->to('/home');
 });
 
@@ -32,7 +37,7 @@ Route::get('/', function () {
 // route siswa
 Route::get('login', LoginPage::class)->name('login');
 Route::post('logout', [SiswaAuthController::class, 'logout'])->name('logout');
-Route::get('register', RegisterPage::class)->name('register');
+Route::get('register', RegisterPage::class)->name('register')->middleware('guest');
 Route::get('home', HomePage::class)->name('home');
 Route::get('pembayaran', SiswaPembayaranPage::class)->name('pembayaran');
 Route::get('nilai', SiswaNilaiPage::class)->name('nilai');
@@ -41,7 +46,7 @@ Route::get('/profile-guru/{id_guru}', SiswaProfilGuruPage::class)->name('profile
 
 Route::prefix('admin')->name('admin.')->group(function () {
     // auth
-    Route::get('login', AdminLoginPage::class)->name('login');
+    Route::get('login', AdminLoginPage::class)->name('login')->middleware('guest');
 
     Route::middleware(['auth'])->group(function () {
         Route::post('logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');

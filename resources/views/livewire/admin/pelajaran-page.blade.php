@@ -24,6 +24,14 @@
 																		<div class="invalid-feedback">{{ $message }}</div>
 																@enderror
 														</div>
+														<div class="col-md-6 mb-3">
+																<label for="tahun_ajaran" class="form-label">deskripsi</label>
+																<input type="text" class="form-control @error('tahun_ajaran') is-invalid @enderror" id="tahun_ajaran"
+																		wire:model="tahun_ajaran" placeholder="Masukkan tahun ajaran (contoh: 2024/2025)">
+																@error('tahun_ajaran')
+																		<div class="invalid-feedback">{{ $message }}</div>
+																@enderror
+														</div>
 												</div>
 												<div class="row">
 														<div class="col-md-6 mb-3">

@@ -1,5 +1,5 @@
 <div class="container-fluid px-4">
-		<h1 class="text-capitalize mt-4">Data Guru</h1>
+		<h1 class="text-capitalize mt-4">Data Guru 1</h1>
 
 		<div class="row mb-3">
 				<div class="col-12">
