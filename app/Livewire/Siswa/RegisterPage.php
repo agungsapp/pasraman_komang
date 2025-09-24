@@ -17,8 +17,10 @@ class RegisterPage extends Component
     public $email;
     public $password;
     public $jenjang_id;
+    public $nama_orang_tua;
     public $no_orang_tua;
     public $alamat;
+    public $tempat_lahir;
     public $tanggal_lahir;
     public $jenjangs;
 
@@ -28,8 +30,10 @@ class RegisterPage extends Component
         'password' => 'required|min:8',
         'jenjang_id' => 'required|exists:jenjangs,id',
         'no_orang_tua' => 'required|string|max:15',
+        'nama_orang_tua' => 'required',
         'alamat' => 'required|string',
         'tanggal_lahir' => 'required|date',
+        'tempat_lahir' => 'required',
     ];
 
     public function mount()
@@ -51,7 +55,9 @@ class RegisterPage extends Component
                 'password' => Hash::make($this->password),
                 'jenjang_id' => $this->jenjang_id,
                 'no_orang_tua' => $this->no_orang_tua,
+                'nama_orang_tua' => $this->nama_orang_tua,
                 'alamat' => $this->alamat,
+                'tempat_lahir' => $this->tempat_lahir,
                 'tanggal_lahir' => $this->tanggal_lahir,
                 'is_active' => true, // Default true
             ]);

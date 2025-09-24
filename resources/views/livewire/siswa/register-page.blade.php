@@ -70,6 +70,17 @@
 																@enderror
 														</div>
 												</div>
+												<!-- Nama Orang Tua -->
+												<div class="form-group mt-3">
+														<div class="col-12 form-group">
+																<label for="nama_orang_tua">Nama Orang Tua</label>
+																<input type="text" class="form-control" wire:model="nama_orang_tua" id="nama_orang_tua"
+																		placeholder="Nomor Telepon Orang Tua" required>
+																@error('nama_orang_tua')
+																		<span class="error-message">{{ $message }}</span>
+																@enderror
+														</div>
+												</div>
 
 												<!-- Alamat -->
 												<div class="form-group mt-3">
@@ -82,7 +93,16 @@
 														</div>
 												</div>
 
-												<!-- Tanggal Lahir -->
+												<!-- Tempat Lahir -->
+												<div class="form-group mt-3">
+														<div class="col-12 form-group">
+																<label for="tempat_lahir">Tempat Lahir</label>
+																<input type="text" class="form-control" wire:model="tempat_lahir" id="tempat_lahir" required>
+																@error('tempat_lahir')
+																		<span class="error-message">{{ $message }}</span>
+																@enderror
+														</div>
+												</div>
 												<div class="form-group mt-3">
 														<div class="col-12 form-group">
 																<label for="tanggal_lahir">Tanggal Lahir</label>
