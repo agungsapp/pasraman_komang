@@ -144,51 +144,53 @@
 						<div class="card">
 								<div class="card-body">
 										<!-- Data Table -->
-										<table id="siswaTable" class="table-striped table">
-												<thead>
-														<tr>
-																<th>No</th>
-																<th>Nama</th>
-																<th>NISN</th>
-																<th>Jenjang</th>
-																<th>Kelas</th>
-																<th>Email</th>
-																<th>No. Orang Tua</th>
-																<th>Nama Orang Tua</th>
-																<th>Tanggal Lahir</th>
-																<th>Tempat Lahir</th>
-																<th>Status</th>
-																<th>Aksi</th>
-														</tr>
-												</thead>
-												<tbody>
-														@forelse($siswas as $index => $item)
+										<div class="table-responsive">
+												<table id="siswaTable" class="table-striped table">
+														<thead>
 																<tr>
-																		<td>{{ $loop->iteration }}</td>
-																		<td>{{ $item->nama }}</td>
-																		<td>{{ $item->nisn ?? '-' }}</td>
-																		<td>{{ $item->jenjang ? $item->jenjang->nama : '-' }}</td>
-																		<td>{{ $item->kelas ? $item->kelas->nama : '-' }}</td>
-																		<td>{{ $item->email }}</td>
-																		<td>{{ $item->no_orang_tua }}</td>
-																		<td>{{ $item->nama_orang_tua }}</td>
-																		<td>{{ $item->tanggal_lahir->format('d/m/Y') }}</td>
-																		<td>{{ $item->tempat_lahir }}</td>
-																		<td>{{ $item->is_active ? 'Aktif' : 'Tidak Aktif' }}</td>
-																		<td>
-																				<button wire:click="edit({{ $item->id }})" class="btn btn-sm btn-warning">Edit</button>
-																				<button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-danger"
-																						onclick="return confirm('Yakin ingin menghapus?')"
-																						{{ $item->nilais()->count() == 0 ? '' : 'disabled' }}>Hapus</button>
-																		</td>
+																		<th>No</th>
+																		<th>Nama</th>
+																		<th>NISN</th>
+																		<th>Jenjang</th>
+																		<th>Kelas</th>
+																		<th>Email</th>
+																		<th>No. Orang Tua</th>
+																		<th>Nama Orang Tua</th>
+																		<th>Tanggal Lahir</th>
+																		<th>Tempat Lahir</th>
+																		<th>Status</th>
+																		<th>Aksi</th>
 																</tr>
-														@empty
-																<tr>
-																		<td colspan="12" class="text-center">Tidak ada data siswa</td>
-																</tr>
-														@endforelse
-												</tbody>
-										</table>
+														</thead>
+														<tbody>
+																@forelse($siswas as $index => $item)
+																		<tr>
+																				<td>{{ $loop->iteration }}</td>
+																				<td>{{ $item->nama }}</td>
+																				<td>{{ $item->nisn ?? '-' }}</td>
+																				<td>{{ $item->jenjang ? $item->jenjang->nama : '-' }}</td>
+																				<td>{{ $item->kelas ? $item->kelas->nama : '-' }}</td>
+																				<td>{{ $item->email }}</td>
+																				<td>{{ $item->no_orang_tua }}</td>
+																				<td>{{ $item->nama_orang_tua }}</td>
+																				<td>{{ $item->tanggal_lahir->format('d/m/Y') }}</td>
+																				<td>{{ $item->tempat_lahir }}</td>
+																				<td>{{ $item->is_active ? 'Aktif' : 'Tidak Aktif' }}</td>
+																				<td>
+																						<button wire:click="edit({{ $item->id }})" class="btn btn-sm btn-warning">Edit</button>
+																						<button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-danger"
+																								onclick="return confirm('Yakin ingin menghapus?')"
+																								{{ $item->nilais()->count() == 0 ? '' : 'disabled' }}>Hapus</button>
+																				</td>
+																		</tr>
+																@empty
+																		<tr>
+																				<td colspan="12" class="text-center">Tidak ada data siswa</td>
+																		</tr>
+																@endforelse
+														</tbody>
+												</table>
+										</div>
 								</div>
 						</div>
 				</div>
